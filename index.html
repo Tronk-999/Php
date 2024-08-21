@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tronk</title>
+    <style>
+        html, body {
+            margin: 0;
+            box-sizing: border-box;
+            height: 100%;
+            padding: 0;
+            overflow: auto; /* Đảm bảo trang có thể cuộn */
+        }
+
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column; /* Đảm bảo các phần tử con sắp xếp theo chiều dọc */
+            align-items: center; /* Căn giữa các phần tử con */
+            justify-content: center; /* Căn giữa các phần tử con */
+        }
+
+        form {
+            border: 2px solid #0f0;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #000;
+            width: 350px;
+        }
+
+        textarea {
+            background-color: #000;
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            resize: none;
+        }
+
+        textarea::placeholder {
+            color: #0f0;
+            opacity: 0.7;
+        }
+
+        input[type="submit"] {
+            background-color: #000;
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .console {
+            display: inline-block;
+            transform: translate(-100%, -0%);
+            text-align: center;
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.8); /* Nền tối với độ trong suốt */
+            padding: 20px;
+            border: 1px solid #00ff00; /* Đường viền xanh neon */
+        }
+
+        .console p {
+            margin: 0;
+            animation: flicker 1.5s infinite; /* Hiệu ứng nhấp nháy */
+            border: 1px solid #00ff00; /* Đường viền xanh neon */
+            padding: 10px; /* Padding bên trong đường viền để trông đẹp hơn */
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .guitar-card {
+            display: inline-block;
+            background-color: #111;
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            text-align: left;
+            white-space: pre; /* Bảo toàn khoảng trắng cho ASCII art */
+            margin: 20px;
+        }
+
+        .guitar-card span {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #textBox {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: black;
+            color: #00ff00;
+            border-radius: 5px;
+            width: 300px;
+            transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+            opacity: 0;
+            transform: scale(0.9);
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+            visibility: hidden; /* Ẩn phần tử khi không được hiển thị */
+        }
+
+        #textBox.show {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible; /* Hiển thị phần tử khi cần */
+        }
+
+        .hidden {
+            display: none; /* Ẩn phần tử hoàn toàn khỏi dòng chảy của trang */
+        }
+
+        .cool-button.active {
+            background-color: transparent; /* Mất màu nền khi bảng hiện */
+            color: #00ff00; /* Màu chữ khi bảng hiện */
+            border: 2px solid #00ff00; /* Hiện viền xanh lá khi bảng hiện */
+        }
+
+        .cool-button:hover {
+            background-color: #046904;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #046904;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="https://www.facebook.com/Tronk.Prd.music?mibextid=ZbWKwL" style="text-decoration: none;">
+            <img style="box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5)" src="Fb.png" title="facebook" alt="Description of the image" width="50" height="50">
+        </a>
+        <a href="https://instagram.com/my_flstudio_music?igshid=OGQ5ZDc2ODk2ZA==" style="text-decoration: none;">
+            <img src="instagram.png" title="instagram" alt="Description of the image" width="50" height="50">
+        </a>
+        <a href="https://zalo.me/0947340370" style="text-decoration: none;">
+            <img src="Zalo.png" title="zalo" alt="Description of the image" width="50" height="50">
+        </a>
+    </div>
+    <div>
+        <div class="guitar-card">
+            <pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⡷⠟⣲
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⠿⠛⠉⣀⠴⠊⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡚⢢⡴⠋⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⢅⣨⠊⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠊⠢⡔⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠼⡀⢱⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡐⠑⢄⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⢂⠗⠀⢠⠚⢄⣱⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡴⢡⡖⡇⢀⡴⡣⢑⡔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⠁⠇⠳⣽⢞⢕⣬⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣠⠴⠚⣁⠜⠀⢾⢓⢕⡵⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⡴⠋⡔⠊⠁⢀⡀⢍⠨⡛⠻⢝⣲⡞⣻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡼⠀⢸⠀⠀⢠⠌⠢⣑⡅⠁⣠⡿⣾⠗⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢇⠀⠘⢤⠒⢄⠑⠬⠂⣠⢾⡏⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠘⢆⠀⠙⠢⣀⣨⠖⢾⠁⡼⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⠳⢤⡀⠈.⢩⡆.
+  ⠀⠆⠀⠀⠀⠀⠀⠀⠀⠀
+            </pre>
+            <span>Guitar lover💚</span>
+        </div>
+        <button id="toggleButton" class="cool-button">Description</button>
+        <div id="textBox" class="hidden">
+            Guitar là một nhạc cụ có ý nghĩa sâu sắc trong nhiều nền văn hóa và thể loại âm nhạc trên toàn thế giới. Được chế tạo với khả năng tạo ra âm thanh đa dạng từ những giai điệu nhẹ nhàng đến những bản nhạc hùng tráng, guitar không chỉ là công cụ để biểu đạt cảm xúc mà còn là cầu nối giữa người chơi và khán giả.
+
+            Với cấu trúc đơn giản gồm thân đàn, cần đàn và dây đàn, guitar có khả năng tạo ra âm thanh phong phú nhờ vào sự biến đổi trong kỹ thuật chơi và cách điều chỉnh dây đàn. Từ những bản nhạc cổ điển của Bach đến các giai điệu hiện đại của rock và pop, guitar đóng vai trò quan trọng trong việc định hình âm nhạc.
+
+            Guitar cũng có giá trị văn hóa sâu sắc. Trong nhiều nền văn hóa, guitar là biểu tượng của tự do và sáng tạo, đồng thời là phương tiện để người chơi kết nối với truyền thống và bản sắc dân tộc. Việc chơi guitar không chỉ là việc tạo ra âm nhạc, mà còn là một hình thức giao tiếp và chia sẻ cảm xúc cá nhân.
+
+            Tóm lại, guitar là một nhạc cụ không chỉ với giá trị âm nhạc mà còn với ý nghĩa sâu xa trong việc kết nối con người và văn hóa. Những âm thanh của guitar có thể tạo ra niềm vui, sự bình yên và cảm xúc mạnh mẽ, làm cho nó trở thành một phần không thể thiếu trong thế giới âm nhạc.
+        </div>
+    </div>
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var textBox = document.getElementById('textBox');
+            textBox.classList.toggle('show');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
